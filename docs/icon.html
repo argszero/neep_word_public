@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="save()">保存</button>
+    <canvas id="myCanvas" width="1024" height="1024" style="border:1px solid #000000;"></canvas>
+
+    <script>
+        function save() {
+            var c = document.getElementById("myCanvas");
+            var image = c.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+            window.location.href = image;
+        }
+        var r = 1024;
+        {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            // ctx.fillStyle = "#000000";
+            ctx.fillStyle = "#60CD74";
+            ctx.fillStyle = "#18A15F";
+            ctx.fillRect(0, 0, r, r);
+        }
+        if (false) {//草稿
+
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.beginPath();
+            ctx.arc(r, 0, r, 0.5 * Math.PI, Math.PI);
+            ctx.stroke();
+
+
+            ctx.beginPath();
+            ctx.moveTo(0, (1 / 2) * r);
+            ctx.lineTo(r, (1 / 2) * r);
+            ctx.stroke();
+
+
+            ctx.beginPath();
+            ctx.moveTo((1 - Math.sqrt(3) / 2) * r, (1 / 2) * r);
+            ctx.lineTo(r, 0);
+            ctx.stroke();
+
+
+            ctx.beginPath();
+            ctx.arc((1 - 3 * Math.sqrt(3) / 8) * r, (3 / 8) * r, (1 / 4) * r, 0, 2 * Math.PI);
+            ctx.stroke();
+
+
+
+            ctx.beginPath();
+            ctx.moveTo((1 - 3 * Math.sqrt(3) / 8) * r, (3 / 8) * r);
+            ctx.lineTo(0, (3 / 8) * r);
+            ctx.stroke();
+
+
+
+            ctx.beginPath();
+            ctx.arc((1 - 3 * Math.sqrt(3) / 8) * r - (1 / 8) * r, (3 / 8) * r, (1 / 8) * r, 0, 2 * Math.PI);
+            ctx.stroke();
+
+
+            ctx.beginPath();
+            ctx.moveTo((1 / 2) * r, 0);
+            ctx.lineTo((1 / 2) * r, r);
+            ctx.stroke();
+
+
+            ctx.beginPath();
+            ctx.arc((1 / 2) * r, (1 / Math.tan((40 / 180) * Math.PI)) * (1 / 2) * r, (1 - (1 / Math.sin((40 / 180) * Math.PI)) * (1 / 2)) * r, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        {//正式画
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.strokeStyle = "#FFCE42";
+            ctx.lineWidth = 100;
+
+            {//左半边
+                ctx.beginPath();
+                ctx.arc(r, 0, r, (1 / 2 + 40 / 180) * Math.PI, (1 / 2 + 2 / 6) * Math.PI);
+                ctx.stroke();
+
+
+                ctx.beginPath();
+                ctx.arc((1 - 3 * Math.sqrt(3) / 8) * r, (3 / 8) * r, (1 / 4) * r, (1 / 2 + 2 / 6) * Math.PI, (1 / 2 + 3 / 6) * Math.PI);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc((1 - 3 * Math.sqrt(3) / 8) * r - (1 / 8) * r, (3 / 8) * r, (1 / 8) * r, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+            {//右半边
+                ctx.beginPath();
+                ctx.arc(0, 0, r, (1 / 6) * Math.PI, (1 / 2 - 40 / 180) * Math.PI);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc((3 * Math.sqrt(3) / 8) * r, (3 / 8) * r, (1 / 4) * r, (0) * Math.PI, (1 / 6) * Math.PI);
+                ctx.stroke();
+
+
+                ctx.beginPath();
+                ctx.arc((3 * Math.sqrt(3) / 8) * r + (1 / 8) * r, (3 / 8) * r, (1 / 8) * r, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+            {
+
+                ctx.beginPath();
+                ctx.arc((1 / 2) * r, (1 / Math.tan((40 / 180) * Math.PI)) * (1 / 2) * r, (1 - (1 / Math.sin((40 / 180) * Math.PI)) * (1 / 2)) * r,
+                    Math.PI * (1 / 2) - (40 / 180) * Math.PI,
+                    Math.PI * (1 / 2) + (40 / 180) * Math.PI,
+                );
+                ctx.stroke();
+
+
+            }
+            {
+                ctx.beginPath();
+                ctx.arc((1 / 2) * r, (1 / Math.tan((40 / 180) * Math.PI)) * (1 / 2) * r - (1 / 8) * r,
+                    (1 - (1 / Math.sin((40 / 180) * Math.PI)) * (1 / 2) - (1 / 6)) * r,
+                    Math.PI * (1 / 2) - (40 / 180) * Math.PI,
+                    Math.PI * (1 / 2) + (40 / 180) * Math.PI,
+                );
+                ctx.stroke();
+            }
+            {
+                ctx.lineWidth = 20;
+                ctx.beginPath();
+                ctx.arc((1 / 2) * r, (1 / Math.tan((40 / 180) * Math.PI)) * (1 / 2) * r,
+                    (1 - (1 / Math.sin((40 / 180) * Math.PI)) * (1 / 2) - 1 / 6) * r,
+                    Math.PI * (1 / 2) - (55 / 180) * Math.PI,
+                    Math.PI * (1 / 2) + (55 / 180) * Math.PI,
+                );
+                ctx.stroke();
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>
